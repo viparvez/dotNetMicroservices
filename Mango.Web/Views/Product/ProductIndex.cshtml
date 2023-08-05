@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Mango.Web.Models.Dto.ProductDto>
+
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-info">Product List</h1>
+        </div>
+        <div class="col text-end">
+            <a asp-area="" asp-controller="Product" asp-action="CreateProduct" class="btn btn-outline-success"><i class="fas fa-plus"></i> Create New Product</a>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @((item.Price).ToString("c"))
+                    <td>
+                        @item.CategoryName
+                    </td>
+                    <td>
+                        <a asp-area="" asp-controller="Product" asp-action="EditProduct" asp-route-id="@item.ProductId" class="btn btn-outline-primary"><i class="fas fa-edit"></i> Edit</a>
+                        <a asp-area="" asp-controller="Product" asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-outline-info"><i class="fas fa-info-circle"></i> Details</a>
+                        <a asp-area="" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@item.ProductId" class="btn btn-outline-danger"><i class="fas fa-trash"></i> Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
